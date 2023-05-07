@@ -3,7 +3,10 @@
 
     @include('nav.saiNav')
 
-<div class="bg-gray-100 xl:w-9/12 lg:w-8/12" id="chat-body">
+
+
+ <!-- Contenido principal -->
+<div class="lg:flex-grow p-4" id="chat-body">
     <div class="py-2 px-4 lg:px-20 border-b">
         <div class="flex flex-wrap items-center">
           <div class="flex flex-grow mb-2 lg:mb-0">
@@ -35,7 +38,7 @@
             @csrf
           </form>
         </div>
-      </div>
+    </div>
     <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto" id="chat-message">
         <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SailBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
             <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SailBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
@@ -66,49 +69,50 @@
         </div>
     </form>    
 </div>
+
 @endsection
 
 @section('scripts')
     <script>
         // Inicializar la instancia de Vue.js
         var app = new Vue({
-        el: '#chat-body',
-        data: function() {
-            return {
-                messages: []
-            }
-        },
-        methods: {
-            // Función para agregar un nuevo mensaje al chat
-            addMessage(message) {
-            this.messages.push(message);
-            // Desplazarse al final del chat para mostrar el último mensaje
-            setTimeout(function() {
-                var chatBody = document.getElementById('chat-body');
-                chatBody.scrollTop = chatBody.scrollHeight;
-            }, 50);
-            }
-        },
-        mounted: function () {
+            el: '#chat-body',
+            data: function() {
+                return {
+                    messages: []
+                }
+            },
+            methods: {
+                // Función para agregar un nuevo mensaje al chat
+                addMessage(message) {
+                    this.messages.push(message);
+                    // Desplazarse al final del chat para mostrar el último mensaje
+                    setTimeout(function() {
+                        var chatBody = document.getElementById('chat-body');
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }, 50);
+                }
+            },
+            mounted: function () {
 
 
-            this.addMessage({
-                text: "Bienvenido, yo soy Sai, tu asistente inteligente, estoy para ayudarte a resolver tus dudas, ¿en qué puedo ayudarte?",
-                link: '',
-                from: 'SailBot',
-                img: "{{asset('storage/images/sai.png')}}",
-                timestamp: new Date()
-            });
-        } 
-            // Obtener el chat del servidor
-            // axios.get('/sai/chat')
-            // .then(response => {
-            //     // Agregar los mensajes del servidor al chat
-            //     response.data.forEach(message => {
-            //         app.addMessage(message);
-            //     });
-            // });
-            
+                this.addMessage({
+                    text: "Bienvenido, yo soy Sai, tu asistente inteligente, estoy para ayudarte a resolver tus dudas, ¿en qué puedo ayudarte?",
+                    link: '',
+                    from: 'SailBot',
+                    img: "{{asset('storage/images/sai.png')}}",
+                    timestamp: new Date()
+                });
+            } 
+                // Obtener el chat del servidor
+                // axios.get('/sai/chat')
+                // .then(response => {
+                //     // Agregar los mensajes del servidor al chat
+                //     response.data.forEach(message => {
+                //         app.addMessage(message);
+                //     });
+                // });
+                
         });
 
         // Obtener el formulario y los elementos de entrada
@@ -164,6 +168,36 @@
             console.log(error);
             });
         });
+
+       
+
+
+        // document.getElementById('sidebar').classList.toggle('hidden');
+
+        const menuDesplegable = document.getElementById('menu-overlay');
+        menuDesplegable.style.transform = 'translateX(-100%)';
+
+        const overlay = document.getElementById('overlay');
+
+        const btnMenu = document.getElementById('mobile-menu-button');
+
+        btnMenu.addEventListener("click", () => {
+            if (menuDesplegable.style.transform === 'translateX(-100%)') {
+                overlay.style.display = 'block';
+                menuDesplegable.style.transform = 'translateX(0%)';
+            } else {
+                overlay.style.display = 'none';
+                menuDesplegable.style.transform = 'translateX(-100%)';
+            }
+            
+        });
+
+        overlay.addEventListener("click", () => {
+            overlay.style.display = 'none';
+            menuDesplegable.style.transform = 'translateX(-100%)';
+        });
+
+
 
         
 

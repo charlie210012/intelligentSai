@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section class="flex flex-col h-screen overflow-hidden lg:flex-row">
+    <section class="lg:flex lg:flex-row lg:h-screen">
         @yield('content')
      
     </section> 
@@ -27,15 +27,6 @@
     font-family: 'Poppins', sans-serif;
     }
 
-    .section {
-        overflow-y: scroll;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .section {
-            overflow-y: scroll;
-        }
-    }
 
 
 
