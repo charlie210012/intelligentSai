@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('Layouts.auth')
 
 @section('content')
     <img class="wave" src="{{ url('/storage/images/wave.png') }}">
