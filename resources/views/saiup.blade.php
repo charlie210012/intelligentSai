@@ -39,18 +39,18 @@
           </form>
         </div>
     </div>
-    <div class="py-2 px-4 sm:px-6 lg:px-8 h-screen overflow-auto" id="chat-message">
-        <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SailBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
-            <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SailBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
-            <div class="flex flex-col">
-                <div :class="{ 'bg-blue-500 text-white p-6 rounded-3xl rounded-br-none w-80 sm:w-96 mb-2': message.from === 'SailBot', 'bg-white p-6 rounded-3xl rounded-bl-none w-80 sm:w-96 shadow-sm mb-2': message.from === 'Me' }">
-                    <p class="font-medium mb-1" v-if="message.from === 'Me'">{{ Auth::user()->name }}</p>
-                    <p class="font-medium mb-1" v-if="message.from !== 'Me'">@{{message.from}}</p>
-                    <small :class="{ 'inline-block mb-1': message.from === 'SailBot', 'inline-block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
-                    <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
-                </div>
-                <small :class="{ 'text-gray-500 self-end': message.from === 'SailBot', 'text-gray-500 self-center': message.from === 'Me' }">@{{ message.timestamp }}</small>
+    <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto" id="chat-message">
+        <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SaiBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
+          <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SaiBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
+          <div class="flex flex-col">
+            <div :class="{ 'bg-blue-500 text-white p-6 rounded-3xl rounded-br-none w-full sm:w-4/5 md:w-3/4 lg:w-full xl:w-full mb-2': message.from === 'SaiBot', 'bg-white p-6 rounded-3xl rounded-bl-none w-full sm:w-4/5 md:w-3/4 lg:w-full xl:w-full shadow-sm mb-2': message.from === 'Me' }">
+              <p class="font-medium mb-1" v-if="message.from === 'Me'">{{ Auth::user()->name }}</p>
+              <p class="font-medium mb-1" v-if="message.from !== 'Me'">@{{message.from}}</p>
+              <small :class="{ 'block mb-1': message.from === 'SailBot', 'block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
+              <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
             </div>
+            <small :class="{ 'text-gray-500': message.from === 'SailBot', 'text-gray-500': message.from === 'Me' }">@{{ message.timestamp }}</small>
+          </div>
         </div>
     </div>
     <form id="chat-form" class="flex flex-col md:flex-row py-2 px-4 md:px-20 border-t">
@@ -96,14 +96,6 @@
             },
             mounted: function () {
 
-
-                this.addMessage({
-                    text: "Bienvenido, yo soy Sai, tu asistente inteligente, estoy para ayudarte a resolver tus dudas, ¿en qué puedo ayudarte?",
-                    link: '',
-                    from: 'SailBot',
-                    img: "{{asset('storage/images/sai.png')}}",
-                    timestamp: new Date().toLocaleTimeString('es-ES',format)
-                });
             } 
                 // Obtener el chat del servidor
                 // axios.get('/sai/chat')
@@ -115,6 +107,18 @@
                 // });
                 
         });
+
+     
+        setTimeout(function() {
+            app.addMessage({
+                text: "Bienvenido {{Auth::user()->name}}, yo soy Sai, tu asistente inteligente, ¿en qué puedo ayudarte?",
+                link: '',
+                from: 'SaiBot',
+                img: "{{asset('storage/images/sai.png')}}",
+                timestamp: new Date().toLocaleTimeString('es-ES',format)
+            });
+        }, 3000);
+
 
         // Obtener el formulario y los elementos de entrada
         const chatForm = document.getElementById('chat-form');
@@ -153,7 +157,7 @@
                 app.addMessage({
                     text: response.data.message,
                     link: response.data.link??'',
-                    from: 'SailBot',
+                    from: 'SaiBot',
                     img: "{{asset('storage/images/sai.png')}}",
                     timestamp: new Date().toLocaleTimeString('es-ES', format)
                 });
