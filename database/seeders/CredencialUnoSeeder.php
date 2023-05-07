@@ -25,6 +25,13 @@ class CredencialUnoSeeder extends Seeder
             'password' => Hash::make(2205)
         ]);
 
+        User::create([
+            'name'=>'Ana Valentina Correcha Ochoa',
+            'identification'=>1007442105,
+            'email'=>'cochoa@cognox.com',
+            'password' => Hash::make(2404)
+        ]);
+
        
     }
 }

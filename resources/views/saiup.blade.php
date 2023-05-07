@@ -39,7 +39,7 @@
           </form>
         </div>
     </div>
-    <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto" id="chat-message">
+    <div class="py-2 px-4 sm:px-6 lg:px-8 h-screen overflow-auto" id="chat-message">
         <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SailBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
             <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SailBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
             <div class="flex flex-col">
@@ -49,7 +49,7 @@
                     <small :class="{ 'inline-block mb-1': message.from === 'SailBot', 'inline-block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
                     <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
                 </div>
-                <small :class="{ 'text-gray-500 self-end': message.from === 'SailBot', 'text-gray-500': message.from === 'Me' }">@{{ message.timestamp }}</small>
+                <small :class="{ 'text-gray-500 self-end': message.from === 'SailBot', 'text-gray-500 self-center': message.from === 'Me' }">@{{ message.timestamp }}</small>
             </div>
         </div>
     </div>
@@ -74,6 +74,7 @@
 
 @section('scripts')
     <script>
+        const format = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false, timeZone: 'America/Bogota' };
         // Inicializar la instancia de Vue.js
         var app = new Vue({
             el: '#chat-body',
@@ -101,7 +102,7 @@
                     link: '',
                     from: 'SailBot',
                     img: "{{asset('storage/images/sai.png')}}",
-                    timestamp: new Date()
+                    timestamp: new Date().toLocaleTimeString('es-ES',format)
                 });
             } 
                 // Obtener el chat del servidor
@@ -133,7 +134,7 @@
             from: 'Me',
             img: "{{asset('storage/images/intellisai.svg')}}",
             link: '',
-            timestamp: new Date()
+            timestamp: new Date().toLocaleTimeString('es-ES', format)
         });
 
         setTimeout(() => {
@@ -154,7 +155,7 @@
                     link: response.data.link??'',
                     from: 'SailBot',
                     img: "{{asset('storage/images/sai.png')}}",
-                    timestamp: new Date()
+                    timestamp: new Date().toLocaleTimeString('es-ES', format)
                 });
 
                 setTimeout(() => {
