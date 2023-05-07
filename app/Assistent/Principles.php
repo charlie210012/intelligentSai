@@ -3,7 +3,7 @@
 namespace App\Assistent;
 
 use App\Models\User;
-use Sidevtech\Sai\Assistent\Principles as SaiPrinciples;
+use Sidevtech\Sai\Src\Assistent\Principles as SaiPrinciples;
 
 class Principles extends SaiPrinciples {
     public function __invoke()

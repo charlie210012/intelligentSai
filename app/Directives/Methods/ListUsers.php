@@ -3,10 +3,10 @@
 namespace App\Directives\Methods;
 
 use App\Http\Controllers\SaiController;
-use Sidevtech\Directives\Implementations\directivesAnswers;
+use Sidevtech\Directives\Implementations\DirectivesAnswers;
 use Sidevtech\Sai\Sai;
 
-class ListUsers implements directivesAnswers
+class ListUsers implements DirectivesAnswers
 {
     public function outPut($request)
     {

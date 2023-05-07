@@ -2,7 +2,7 @@
 
 namespace App\Directives\Helpers;
 
-use Sidevtech\Sai\Helpers\Pattern\Methods\HelperBase;
+use Sidevtech\Sai\Src\Helpers\Pattern\Methods\HelperBase;
 
 class GetExample extends HelperBase 
 {

@@ -3,15 +3,16 @@
 namespace App\Directives\Methods;
 
 use App\Http\Controllers\SaiController;
-use Sidevtech\Directives\Implementations\directivesAnswers;
+use Sidevtech\Directives\Implementations\DirectivesAnswers;
+use Sidevtech\Sai\Src\Helpers\SaiHelpers;
 
-use Sidevtech\Sai\Helpers\SaiHelpers;
-use Sidevtech\Sai\Sai;
-
-class GenerateReport implements directivesAnswers
+class GenerateReport implements DirectivesAnswers
 {
     public function outPut($request)
     {
-        return (new SaiHelpers('GetName'))->call($request->input('message'));
+        return (new SaiHelpers('GetExample'))->call($request->input('message'));
+
     }
+
+
 }

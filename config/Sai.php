@@ -48,6 +48,10 @@ return [
     "sensitivity" => 40,
     "methods"=> [
         [
+            "method"=> "SendEmail",
+            "mensaje"=> "Este metodo se usa para enviar correos"
+        ],
+        [
             "method"=> "GenerateReport",
             "mensaje"=> "Este metodo se usa para generar reportes"
         ],
