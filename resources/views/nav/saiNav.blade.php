@@ -1,8 +1,8 @@
 <div class="bg-white xl:w-4/12 lg:w-4/12 md:w-5/12 w-full p-6">
-    <div class="row mb-8">
-        <h3 class="text-2xl mr-4">IntelliSai</h3>
+    <div class="row mb-8 flex items-center">
+        <h3 class="text-5xl mr-4">IntelliSai</h3>
         <img src="{{ asset('storage/images/imgCloud.svg')}}" width="120px" alt="Logo de la plataforma" class="hidden lg:block">
-    </div>            
+    </div>             
     <div class="flex overflow-auto mb-8">
         <div class="mr-4 text-center self-center">
             <div class="relative w-12 mb-2">

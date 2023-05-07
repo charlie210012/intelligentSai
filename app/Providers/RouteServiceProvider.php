@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/sai';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -33,8 +33,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(function () {
+                // Lee las rutas desde el archivo web.php
+                require base_path('routes/web.php');
+                
+                // Lee las rutas desde otro archivo web
+                require base_path('vendor/sidevtech/sai/src/routes/sai.php');
+            });
         });
     }
 }

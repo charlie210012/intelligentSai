@@ -44,7 +44,7 @@ return [
         'odio',
         'extremismo',
     ],
-    "auth" => false,
+    "auth" => true,
     "sensitivity" => 40,
     "methods"=> [
         [

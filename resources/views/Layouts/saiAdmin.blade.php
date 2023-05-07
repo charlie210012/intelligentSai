@@ -6,7 +6,7 @@
     <title>IntelliSai</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <section class="flex flex-col h-screen overflow-hidden lg:flex-row">
@@ -26,6 +26,18 @@
     body {
     font-family: 'Poppins', sans-serif;
     }
+
+    .section {
+        overflow-y: scroll;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .section {
+            overflow-y: scroll;
+        }
+    }
+
+
 
 </style>
 </html>

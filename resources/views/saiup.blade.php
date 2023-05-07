@@ -6,34 +6,43 @@
 <div class="bg-gray-100 xl:w-9/12 lg:w-8/12" id="chat-body">
     <div class="py-2 px-4 lg:px-20 border-b">
         <div class="flex flex-wrap items-center">
-        <div class="flex flex-grow mb-2 lg:mb-0">
+          <div class="flex flex-grow mb-2 lg:mb-0">
             <div class="relative mr-4">
-            <img src="{{ asset('storage/images/sai.png') }}" class="rounded-full w-12">
-            <div class="absolute bg-green-300 p-1 rounded-full bottom-0 right-0 border-2 border-gray-800"></div>
+              <img src="{{ asset('storage/images/sai.png') }}" class="rounded-full w-12">
+              <div class="absolute bg-green-300 p-1 rounded-full bottom-0 right-0 border-2 border-gray-800"></div>
             </div>
             <div>
-            <p class="font-medium">SaiBot</p>
-            <small class="text-gray-500">Online</small>
+              <p class="font-medium">SaiBot</p>
+              <small class="text-gray-500">Online</small>
             </div>
-        </div>
-        <div class="flex">
+          </div>
+          <div class="flex">
             <svg class="w-6 mr-4 text-gray-500 hidden lg:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <button class="lg:hidden">
-            <svg class="w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+              </svg>
             </button>
+          </div>
+          <div class="ml-auto flex-shrink-0">
+            <div class="flex items-center">
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-gray-800 font-bold px-4 py-2 hover:bg-gray-300 hover:text-gray-900">Salir</a>
+            </div>
+          </div>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
         </div>
-        </div>
-    </div>
-    <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto">
+      </div>
+    <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto" id="chat-message">
         <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SailBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
             <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SailBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
             <div class="flex flex-col">
                 <div :class="{ 'bg-blue-500 text-white p-6 rounded-3xl rounded-br-none w-80 sm:w-96 mb-2': message.from === 'SailBot', 'bg-white p-6 rounded-3xl rounded-bl-none w-80 sm:w-96 shadow-sm mb-2': message.from === 'Me' }">
-                    <p class="font-medium mb-1">@{{ message.from }}</p>
+                    <p class="font-medium mb-1" v-if="message.from === 'Me'">{{ Auth::user()->name }}</p>
+                    <p class="font-medium mb-1" v-if="message.from !== 'Me'">@{{message.from}}</p>
                     <small :class="{ 'inline-block mb-1': message.from === 'SailBot', 'inline-block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
                     <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
                 </div>
@@ -82,7 +91,7 @@
         },
         mounted: function () {
 
-            
+
             this.addMessage({
                 text: "Bienvenido, yo soy Sai, tu asistente inteligente, estoy para ayudarte a resolver tus dudas, ¿en qué puedo ayudarte?",
                 link: '',
@@ -123,25 +132,41 @@
             timestamp: new Date()
         });
 
+        setTimeout(() => {
+            var chatBody = document.getElementById('chat-message');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }, 100);
+
+
         // Enviar el mensaje al servidor
         axios.post('/sai/send', {
             message: message
         })
             .then(response => {
                 console.log(response);
-            // Agregar la respuesta del servidor al chat
-            app.addMessage({
-                text: response.data.message,
-                link: response.data.link??'',
-                from: 'SailBot',
-                img: "{{asset('storage/images/sai.png')}}",
-                timestamp: new Date()
-            });
+                // Agregar la respuesta del servidor al chat
+                app.addMessage({
+                    text: response.data.message,
+                    link: response.data.link??'',
+                    from: 'SailBot',
+                    img: "{{asset('storage/images/sai.png')}}",
+                    timestamp: new Date()
+                });
+
+                setTimeout(() => {
+                    var chatBody = document.getElementById('chat-message');
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 100);
+
+            
             })
             .catch(error => {
             console.log(error);
             });
         });
+
+        
+
 
         // Cargar la conversación del chat desde el servidor
         // axios.get('/sai/history')
