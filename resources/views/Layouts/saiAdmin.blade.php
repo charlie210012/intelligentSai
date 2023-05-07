@@ -27,6 +27,9 @@
     font-family: 'Poppins', sans-serif;
     }
 
+    #mobile-menu-button {
+        z-index: 999;
+    }
 
 
 
