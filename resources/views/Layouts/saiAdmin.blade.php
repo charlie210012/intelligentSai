@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section class="lg:flex lg:flex-row lg:h-screen">
+    <section class="lg:flex lg:flex-row lg:h-full">
         @yield('content')
      
     </section> 

@@ -34,6 +34,46 @@
                 <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
             </div>
         </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded" data-toggle="tooltip" data-placement="top" title="Aqui podra gestionar a los usuarios del sistema">
+            <img src="{{asset('storage/images/user.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de Usuarios</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar a los usuarios del sistema</small>
+            </div>
+        </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded">
+            <img src="{{asset('storage/images/inventary.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de inventario</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
+            </div>
+        </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded" data-toggle="tooltip" data-placement="top" title="Aqui podra gestionar a los usuarios del sistema">
+            <img src="{{asset('storage/images/user.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de Usuarios</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar a los usuarios del sistema</small>
+            </div>
+        </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded">
+            <img src="{{asset('storage/images/inventary.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de inventario</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
+            </div>
+        </div>
         
     </div>
 </div>
@@ -61,7 +101,7 @@
         </div>
         <img src="{{ asset('storage/images/imgCloud.svg')}}" width="120px" alt="Logo de la plataforma" class="block lg:hidden">
     </div>
-    <div class="overflow-auto h-4/5">
+    <div class="overflow-auto h-auto" style="max-height: 300px;">
         <div class="flex bg-gray-100 mb-4 p-4 rounded" data-toggle="tooltip" data-placement="top" title="Aqui podra gestionar a los usuarios del sistema">
             <img src="{{asset('storage/images/user.svg')}}" class="self-start rounded-full w-12 mr-4">
             <div class="w-full overflow-hidden">
@@ -82,7 +122,37 @@
                 <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
             </div>
         </div>
-        
+        <div class="flex bg-gray-100 mb-4 p-4 rounded">
+            <img src="{{asset('storage/images/inventary.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de inventario</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
+            </div>
+        </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded">
+            <img src="{{asset('storage/images/inventary.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de inventario</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
+            </div>
+        </div>
+        <div class="flex bg-gray-100 mb-4 p-4 rounded">
+            <img src="{{asset('storage/images/inventary.svg')}}" class="self-start rounded-full w-12 mr-4">
+            <div class="w-full overflow-hidden">
+                <div class="flex mb-1">
+                    <p class="font-medium flex-grow">Gestión de inventario</p>
+                    <small class="text-gray-500">Administración</small>
+                </div>
+                <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
+            </div>
+        </div>
     </div>
 </div>
+
 
