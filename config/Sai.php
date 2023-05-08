@@ -9,7 +9,6 @@ return [
         'descargar',
         'torrent',
         'warez',
-        'contraseña',
         'fuga',
         'filtración',
         'leak',
