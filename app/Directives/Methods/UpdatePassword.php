@@ -2,9 +2,9 @@
 
 namespace App\Directives\Methods;
 
-use Sidevtech\Directives\Implementations\directivesAnswers;
+use Sidevtech\Directives\Implementations\DirectivesAnswers;
 
-class UpdatePassword implements directivesAnswers
+class UpdatePassword implements DirectivesAnswers
 {
     public function outPut($input)
     {
