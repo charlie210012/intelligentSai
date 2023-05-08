@@ -3,7 +3,6 @@
 return [
     'wordsBlocks' => [
         'crear',
-        'actualiza',
         'hackear',
         'crackear',
         'piratear',
