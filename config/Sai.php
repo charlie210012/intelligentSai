@@ -45,19 +45,17 @@ return [
         'extremismo',
     ],
     "auth" => true,
-    "sensitivity" => 40,
+    "sensitivity" => 70,
     "methods"=> [
         [
-            "method"=> "SendEmail",
-            "mensaje"=> "Este metodo se usa para enviar correos"
-        ],
-        [
-            "method"=> "GenerateReport",
-            "mensaje"=> "Este metodo se usa para generar reportes"
-        ],
-        [
-            "method"=> "ListUsers",
-            "mensaje"=> "Este metodo te genera un archivo excel con la listar de usuarios"
+            "method"=> "GetFunctions",
+            "mensajes"=>[
+                "Que funcionalidades tienes?",
+                "muestrame que puedes hacer",
+                "muestrame tus funcionalidades",
+                "dime que peudes hacer",
+                "que funcionalidades tienes programadas?"
+            ]
         ]
     ]
 ];

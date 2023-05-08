@@ -32,6 +32,13 @@ class CredencialUnoSeeder extends Seeder
             'password' => Hash::make(2404)
         ]);
 
+        User::create([
+            'name'=>'Juan Guillermo Franco Carrillo',
+            'identification'=>80859534,
+            'email'=>'movix86@gmail.com',
+            'password' => Hash::make(1234)
+        ]);
+
        
     }
 }

@@ -42,12 +42,19 @@
     <div class="py-2 px-4 sm:px-6 lg:px-8 h-3/4 overflow-auto" id="chat-message">
         <div v-for="message in messages" :class="{ 'flex mb-8 sm:mb-12': message.from === 'SaiBot', 'flex flex-row-reverse mb-8 sm:mb-12': message.from === 'Me' }">
           <img :src="message.img" :class="{ 'self-end rounded-full w-12 mr-4': message.from === 'SaiBot', 'self-end rounded-full w-12 ml-4': message.from === 'Me' }">
-          <div class="flex flex-col">
+          <div class="flex flex-col w-full lg:w-1/2 xl:w-1/2">
             <div :class="{ 'bg-blue-500 text-white p-6 rounded-3xl rounded-br-none w-full sm:w-4/5 md:w-3/4 lg:w-full xl:w-full mb-2': message.from === 'SaiBot', 'bg-white p-6 rounded-3xl rounded-bl-none w-full sm:w-4/5 md:w-3/4 lg:w-full xl:w-full shadow-sm mb-2': message.from === 'Me' }">
               <p class="font-medium mb-1" v-if="message.from === 'Me'">{{ Auth::user()->name }}</p>
               <p class="font-medium mb-1" v-if="message.from !== 'Me'">@{{message.from}}</p>
-              <small :class="{ 'block mb-1': message.from === 'SailBot', 'block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
-              <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
+              <template v-if="Array.isArray(message.text)">
+                <div v-for="msg in message.text" :key="msg">
+                  <small :class="{ 'block mb-1': message.from === 'SailBot', 'block text-gray-500 mb-1': message.from === 'Me' }">@{{ msg }}</small>
+                </div>
+              </template>
+              <template v-else>
+                <small :class="{ 'block mb-1': message.from === 'SailBot', 'block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
+                <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
+              </template>
             </div>
             <small :class="{ 'text-gray-500': message.from === 'SailBot', 'text-gray-500': message.from === 'Me' }">@{{ message.timestamp }}</small>
           </div>
@@ -111,13 +118,13 @@
      
         setTimeout(function() {
             app.addMessage({
-                text: "Bienvenido {{Auth::user()->name}}, yo soy Sai, tu asistente inteligente, ¿en qué puedo ayudarte?",
+                text: "Bienvenido {{Auth::user()->name}}, yo soy Sai, tu asistente inteligente, pregunta por mis funcionalidades desarrolladas",
                 link: '',
                 from: 'SaiBot',
                 img: "{{asset('storage/images/sai.png')}}",
                 timestamp: new Date().toLocaleTimeString('es-ES',format)
             });
-        }, 3000);
+        }, 4000);
 
 
         // Obtener el formulario y los elementos de entrada
