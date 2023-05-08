@@ -2,9 +2,9 @@
 
 namespace App\Directives\Methods;
 
-use Sidevtech\Directives\Implementations\directivesAnswers;
+use Sidevtech\Directives\Implementations\DirectivesAnswers;
 
-class GetFunctions implements directivesAnswers
+class GetFunctions implements DirectivesAnswers
 {
     public function outPut($input)
     {
