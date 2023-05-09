@@ -8,6 +8,6 @@ class UpdatePassword implements DirectivesAnswers
 {
     public function outPut($input)
     {
-        return "La funcionalidad de actualizar contraseña esta en desarrollo, por favor intenta mas tarde";
+        return "De acuerdo vamos a cambiar tu contraseña, enviame la nueva contraseña por favor, en este formato 'Mi nueva contraseña es: 1245367' recuerda no elegir una contraseña muy facil de adivinar";
     }
 }
