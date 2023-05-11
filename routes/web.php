@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -22,4 +22,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/view/employees', [EmployeController::class, 'index'])->name('employees.index');
+Route::get('/employees', [EmployeController::class, 'store'])->name('employees.store');
+Route::get('/employees/list', [EmployeController::class, 'list'])->name('employees.list');

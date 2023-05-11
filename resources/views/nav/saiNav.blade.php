@@ -2,7 +2,7 @@
     <div class="row mb-8 flex items-center">
         <h3 class="text-5xl mr-4">IntelliSai</h3>
         <img src="{{ asset('storage/images/imgCloud.svg')}}" width="120px" alt="Logo de la plataforma" class="hidden lg:block xl:block">
-    </div>             
+    </div>
     <div class="flex overflow-auto mb-8">
         <a href="{{url('/sai')}}">
             <div class="mr-4 text-center self-center">
@@ -19,7 +19,7 @@
             <img src="{{asset('storage/images/user.svg')}}" class="self-start rounded-full w-12 mr-4">
             <div class="w-full overflow-hidden">
                 <div class="flex mb-1">
-                    <a href="{{route('users.index')}}">
+                    <a href="{{route('employees.index')}}">
                         <p class="font-medium flex-grow">Gestión de Usuarios</p>
                         <small class="text-gray-500">Administración</small>
                     </a>
@@ -77,7 +77,7 @@
                 <small class="overflow-ellipsis overflow-hidden block whitespace-nowrap text-gray-500">Aqui podra gestionar el inventario del sistema</small>
             </div>
         </div> --}}
-        
+
     </div>
 </div>
 
@@ -93,7 +93,7 @@
     <div class="row mb-8 flex items-center">
         <h3 class="text-5xl mr-4">IntelliSai</h3>
         <img src="{{ asset('storage/images/imgCloud.svg')}}" width="120px" alt="Logo de la plataforma" class="hidden lg:block">
-    </div>             
+    </div>
     <div class="flex overflow-auto mb-8">
         <a href="{{url('/sai')}}">
             <div class="mr-4 text-center self-center">
@@ -110,7 +110,7 @@
             <img src="{{asset('storage/images/user.svg')}}" class="self-start rounded-full w-12 mr-4">
             <div class="w-full overflow-hidden">
                 <div class="flex mb-1">
-                    <a href="{{route('users.index')}}">
+                    <a href="{{route('employees.index')}}">
                         <p class="font-medium flex-grow">Gestión de Usuarios</p>
                         <small class="text-gray-500">Administración</small>
                     </a>

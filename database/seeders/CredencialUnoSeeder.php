@@ -21,14 +21,14 @@ class CredencialUnoSeeder extends Seeder
         User::create([
             'name'=>'Carlos Andres Arevalo Cortes',
             'identification'=>1144170160,
-            'email'=>'carevalo@cognox.com',
+            'email'=>'carevalo@sidevtech.com',
             'password' => Hash::make(2205)
         ]);
 
         User::create([
             'name'=>'Ana Valentina Correcha Ochoa',
             'identification'=>1007442105,
-            'email'=>'cochoa@cognox.com',
+            'email'=>'cochoa@sidevtech.com',
             'password' => Hash::make(2404)
         ]);
 
@@ -39,6 +39,6 @@ class CredencialUnoSeeder extends Seeder
             'password' => Hash::make(1234)
         ]);
 
-       
+
     }
 }

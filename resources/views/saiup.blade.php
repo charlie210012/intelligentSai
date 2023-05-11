@@ -55,6 +55,83 @@
                 <small :class="{ 'block mb-1': message.from === 'SailBot', 'block text-gray-500 mb-1': message.from === 'Me' }">@{{ message.text }}</small>
                 <a target="__blanck" v-if ="message.link !== ''" :href="message.link">Ver reporte</a>
               </template>
+              <template v-if="message.register">
+                <br>
+                <div id="formEmployee" v-if="showForm">
+                    <!-- form -->
+                    <form orm @submit.prevent="addEmployee" class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Añadir empleado
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="hideForm">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre completo</label>
+                                    <input type="text" name="name" id="name" v-model="employee.name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bonnie" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="identification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Identificación</label>
+                                    <input type="number" name="identification" id="identification" v-model="employee.identification" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Green" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo</label>
+                                    <input type="email" name="email" id="email" v-model="employee.email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@company.com" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telefono</label>
+                                    <input type="number" name="phone-number" id="phone-number" v-model="employee.phoneNumber" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="e.g. +(12)3456 789" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección</label>
+                                    <input type="text" name="address" id="address" v-model="employee.address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Development" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de nacimiento</label>
+                                    <input type="date" name="birthday" id="birthday" v-model="employee.birthday" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="area" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Area</label>
+                                    {{-- <input type="number" name="area" id="area" v-model="employee.area" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456" required=""> --}}
+                                    <select name="area" id="area" v-model="employee.area" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option v-for="area in areas" :value="area.id">@{{area.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rol</label>
+                                    {{-- <input type="number" name="role" id="role" v-model="employee.role" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456" required=""> --}}
+                                    <select name="role" id="role" v-model="employee.role" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option v-for="role in roles" :value="role.id">@{{role.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="dateOfHire" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de ingreso</label>
+                                    <input type="date" name="dateOfHire" id="dateOfHire" v-model="employee.dateOfHire" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456" required="">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
+                                    {{-- <input type="text" name="status" id="status" v-model="employee.status" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456" required=""> --}}
+                                    <select name="status" id="status" v-model="employee.status" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option v-for="s in status" :value="s.id">@{{s.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                            <button id="registerEmployee" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+
+              </template>
             </div>
             <small :class="{ 'text-gray-500': message.from === 'SailBot', 'text-gray-500': message.from === 'Me' }">@{{ message.timestamp }}</small>
           </div>
@@ -74,20 +151,33 @@
             </svg>
             <button type="submit" class="bg-blue-500 text-white rounded px-4 py-2">Enviar</button>
         </div>
-    </form>    
+    </form>
 </div>
+ <!-- Register Employee modal -->
 
 @endsection
 
 @section('scripts')
     <script>
+
         const format = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false, timeZone: 'America/Bogota' };
         // Inicializar la instancia de Vue.js
         var app = new Vue({
             el: '#chat-body',
             data: function() {
                 return {
-                    messages: []
+                    messages: [],
+                    employee: {
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        department: '',
+                        company: ''
+                    },
+                    showForm: true,
+                    areas: [],
+                    status: [],
+                    roles: []
                 }
             },
             methods: {
@@ -99,11 +189,42 @@
                         var chatBody = document.getElementById('chat-body');
                         chatBody.scrollTop = chatBody.scrollHeight;
                     }, 50);
+                },
+                showModal () {
+                    this.$modal.show('registerEmployeeModal')
+                },
+                addEmployee() {
+                    console.log(this.employee);
+                    this.showForm = false;
+
+                },
+                hideForm(){
+
+                    this.addMessage({
+                        text: "No te preocupes, podemos registrar cuando quieres un nuevo empleado, ¿en que mas te puedo ayudar?",
+                        link: '',
+                        from: 'SaiBot',
+                        img: "{{asset('storage/images/sai.png')}}",
+                        register: false,
+                        timestamp: new Date().toLocaleTimeString('es-ES',format)
+                    });
+
+                    this.showForm = false;
+
                 }
             },
             mounted: function () {
 
-            } 
+                //obtener las listas para los select
+                axios.get('/employees/list')
+                .then(response => {
+                    console.log(response.data);
+                    this.areas = response.data.areas;
+                    this.roles = response.data.roles;
+                    this.status = response.data.status;
+                });
+
+            }
                 // Obtener el chat del servidor
                 // axios.get('/sai/chat')
                 // .then(response => {
@@ -112,19 +233,20 @@
                 //         app.addMessage(message);
                 //     });
                 // });
-                
+
         });
 
-     
+
         setTimeout(function() {
             app.addMessage({
                 text: "Bienvenido {{Auth::user()->name}}, yo soy Sai, tu asistente inteligente, pregunta por mis funcionalidades desarrolladas",
                 link: '',
                 from: 'SaiBot',
                 img: "{{asset('storage/images/sai.png')}}",
+                register: false,
                 timestamp: new Date().toLocaleTimeString('es-ES',format)
             });
-        }, 4000);
+        }, 3000);
 
 
         // Obtener el formulario y los elementos de entrada
@@ -145,6 +267,7 @@
             from: 'Me',
             img: "{{asset('storage/images/intellisai.svg')}}",
             link: '',
+            register:false,
             timestamp: new Date().toLocaleTimeString('es-ES', format)
         });
 
@@ -159,65 +282,39 @@
             message: message
         })
             .then(response => {
-                console.log(response);
+
                 // Agregar la respuesta del servidor al chat
                 app.addMessage({
                     text: response.data.message,
                     link: response.data.link??'',
+                    register: response.data.register??false,
                     from: 'SaiBot',
                     img: "{{asset('storage/images/sai.png')}}",
                     timestamp: new Date().toLocaleTimeString('es-ES', format)
                 });
+
+                if(response.data.register){
+                    app.showForm = true;
+                }
 
                 setTimeout(() => {
                     var chatBody = document.getElementById('chat-message');
                     chatBody.scrollTop = chatBody.scrollHeight;
                 }, 100);
 
-            
+
             })
             .catch(error => {
             console.log(error);
             });
         });
 
-       
-
-
-        // document.getElementById('sidebar').classList.toggle('hidden');
-
-        const menuDesplegable = document.getElementById('menu-overlay');
-        menuDesplegable.style.transform = 'translateX(-100%)';
-
-        const overlay = document.getElementById('overlay');
-
-        const btnMenu = document.getElementById('mobile-menu-button');
-
-        btnMenu.addEventListener("click", () => {
-            if (menuDesplegable.style.transform === 'translateX(-100%)') {
-                overlay.style.display = 'block';
-                menuDesplegable.style.transform = 'translateX(0%)';
-            } else {
-                overlay.style.display = 'none';
-                menuDesplegable.style.transform = 'translateX(-100%)';
-            }
-            
-        });
-
-        overlay.addEventListener("click", () => {
-            overlay.style.display = 'none';
-            menuDesplegable.style.transform = 'translateX(-100%)';
-        });
-
-
-
-        
 
 
         // Cargar la conversación del chat desde el servidor
         // axios.get('/sai/history')
         // .then(response => {
-        
+
         // // Agregar los mensajes del servidor al chat
         // app.messages = response.data;
 
