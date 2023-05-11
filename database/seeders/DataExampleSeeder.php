@@ -45,7 +45,7 @@ class DataExampleSeeder extends Seeder
         // create 3 statuses with random names
         foreach($listStatus as $status) {
             status::create([
-                'name' => $faker->word()
+                'name' => $status
             ]);
         }
 

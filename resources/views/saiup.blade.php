@@ -168,8 +168,7 @@
                 return {
                     messages: [],
                     employee: {
-                        firstName: '',
-                        lastName: '',
+                        name: '',
                         email: '',
                         department: '',
                         company: ''
@@ -194,8 +193,29 @@
                     this.$modal.show('registerEmployeeModal')
                 },
                 addEmployee() {
-                    console.log(this.employee);
-                    this.showForm = false;
+                    axios.post('/employees', this.employee)
+                    .then(response => {
+                        if(response.data.process){
+                            this.addMessage({
+                                text: "¡Listo! Ya registramos a " + this.employee.name +", ¿en que mas te puedo ayudar?",
+                                link: '',
+                                from: 'SaiBot',
+                                img: "{{asset('storage/images/sai.png')}}",
+                                register: false,
+                                timestamp: new Date().toLocaleTimeString('es-ES',format)
+                            });
+
+                            this.employee = {
+                                name: '',
+                                email: '',
+                                department: '',
+                                company: ''
+                            };
+
+                            this.showForm = false;
+                        }
+                    });
+
 
                 },
                 hideForm(){
@@ -246,7 +266,7 @@
                 register: false,
                 timestamp: new Date().toLocaleTimeString('es-ES',format)
             });
-        }, 3000);
+        }, 2000);
 
 
         // Obtener el formulario y los elementos de entrada

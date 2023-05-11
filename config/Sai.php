@@ -107,7 +107,8 @@ return [
                     "podrías mostrame todo los empleados cuyo nombre empiece por la letra",
                     "podrías mostrame todo los empleados cuyo nombre empiece por la",
                     "hay un empleado que se llame xxxx en el sistema",
-                    "muestrame los datos de la empleada"
+                    "muestrame los datos de la empleada",
+                    "muestrame una lista de los nombres de todos los empleados"
                 ]
             ],
             [
