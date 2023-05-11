@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\area;
+use App\Models\Area;
 use App\Models\Employe;
-use App\Models\role;
-use App\Models\status;
+use App\Models\Role;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -44,7 +44,7 @@ class DataExampleSeeder extends Seeder
 
         // create 3 statuses with random names
         foreach($listStatus as $status) {
-            status::create([
+            Status::create([
                 'name' => $status
             ]);
         }
@@ -70,8 +70,8 @@ class DataExampleSeeder extends Seeder
             ]);
 
             // set a random area and role for the employee
-            $area = area::inRandomOrder()->first();
-            $role = role::inRandomOrder()->first();
+            $area = Area::inRandomOrder()->first();
+            $role = Role::inRandomOrder()->first();
             $employee->area_id = $area->id;
             $employee->role_id = $role->id;
 
