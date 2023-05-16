@@ -64,4 +64,57 @@ class EmployeController extends Controller
 
 
     }
+
+    public function update(Request $request, $id){
+
+        $user = User::find($id);
+
+
+
+        if($user){
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->identification = $request->identification;
+            $user->save();
+
+            $employe = Employe::where('user_id', $user->id)->first();
+
+            if($employe){
+                $employe->phone = $request->phone;
+                $employe->address = $request->address;
+                $employe->birthday = $request->birthday;
+                $employe->area_id = $request->area;
+                $employe->role_id = $request->role;
+                $employe->date_of_hire = $request->dateOfHire;
+                $employe->status_id = $request->status;
+                $employe->save();
+
+                return response()->json([
+                    'message'=>'Empleado actualizado correctamente',
+                    'process'=>true,
+                    'user_id'=>$user,
+                ], 200);
+            }else{
+                $employe = Employe::create([
+                    "phone"=>$request->phone,
+                    "address"=>$request->address,
+                    "birthday"=>$request->birthday,
+                    "area_id"=>$request->area,
+                    "role_id"=>$request->role,
+                    "date_of_hire"=>$request->dateOfHire,
+                    "status_id"=>$request->status,
+                    "user_id"=>$user->id,
+                ]);
+
+                if($employe){
+                    return response()->json([
+                        'message'=>'Empleado actualizado correctamente',
+                        'process'=>true,
+                        'user_id'=>$user,
+                    ], 200);
+                }
+            }
+        }
+
+    }
 }
